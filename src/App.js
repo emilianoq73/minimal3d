@@ -8,8 +8,8 @@ import Main from './components/Main/Main';
 function App() {
   return (
     <div className="app">
-      <Header></Header>
-      <Main></Main>
+      <Header />
+      <Main />
     </div>
   );
 }
