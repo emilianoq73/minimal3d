@@ -1,9 +1,18 @@
 import React, {useState} from 'react'
 
 
-const ItemCount = ({ stock, initial }) => {
+const ItemCount = ({ stock, initial, OnAdd }) => {
 
     const [counter, setCounter] = useState(initial);
+
+  
+  function sumar() {
+     counter < stock && setCounter(counter+1)
+  }
+
+  function restar() {
+    counter > initial && setCounter(counter-1)
+  }  
 
   return (
     <div className='container'>
@@ -19,16 +28,7 @@ const ItemCount = ({ stock, initial }) => {
     </div>
   )
  
-  function OnAdd() {
-    stock > 0 ? alert("Felicitaciones tu producto se cargo con exito!!") : alert("No tenemos stock en este momento!!")
-  }
-  function sumar() {
-     counter < stock && setCounter(counter+1)
-  }
-
-  function restar() {
-    counter > initial && setCounter(counter-1)
-  }
+  
 
 
 }
