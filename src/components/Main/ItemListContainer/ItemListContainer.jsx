@@ -14,7 +14,7 @@ const data = [
 const ItemListContainer = ({greating}) => {
 
   function OnAdd(counter) {
-    counter > 0 ? alert('Felicitaciones tu pedido se cargo con exito') : alert('Lo sentimos, no tenemos stock!!');
+    alert('Felicitaciones, se cargaron' + counter + 'productos a tu carrito!!')
   }
 
     const [productos, setProductos] = useState([])
