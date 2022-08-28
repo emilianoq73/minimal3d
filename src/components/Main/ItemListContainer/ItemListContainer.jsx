@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import ItemCount from './ItemCount/ItemCount'
+import ItemDetailContainer from './ItemDetailContainer/ItemDetailContainer'
 import ItemList from './ItemList/ItemList'
 
 const data = [
@@ -44,6 +45,7 @@ const ItemListContainer = ({greating}) => {
             </div>
             <ItemCount stock={5} initial={1} OnAdd={OnAdd} />
             <ItemList items={productos} />
+            <ItemDetailContainer />
         </div>
  ) 
 

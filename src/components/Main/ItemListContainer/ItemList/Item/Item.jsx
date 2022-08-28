@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Item = ( {item}) => {
+const Item = ( {item} ) => {
   return (
     <div className='col'>
       <div className="card" style={{width:'18rem'}}>
@@ -8,7 +8,7 @@ const Item = ( {item}) => {
         <div className="card-body">
             <h5 className="card-title">{item.title}</h5>
             <p className="card-text">Precio: ${item.price}</p>
-            <a href="index.html" className="btn btn-primary">Ver detalles</a>
+            <button type="button" className="btn btn-primary">Ver detalles</button>
         </div>
       </div>
     </div>
