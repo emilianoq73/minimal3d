@@ -1,0 +1,52 @@
+{
+    "products":[
+       {
+          "id":1,
+          "title":"Darth Vader",
+          "categories":"impresiones",
+          "description":"Figura personalizada de plástico biodegradable, con detalles pintados a mano.",
+          "price":1200,
+          "pictureUrl":"https://i0.wp.com/minimal3d.com.ar/wp-content/uploads/2021/11/IMG_20211118_180903_611-scaled.jpg?fit=1920%2C2560&ssl=1"
+       },
+       {
+          "id":2,
+          "title":"Esponjero Bob Esponja",
+          "categories":"impresiones",
+          "description":"Figura personalizada de plástico biodegradable, con detalles pintados a mano.",
+          "price":800,
+          "pictureUrl":"https://i0.wp.com/minimal3d.com.ar/wp-content/uploads/2021/11/IMG_20211115_163256_132-scaled.jpg?resize=300%2C300&ssl=1"
+       },
+       {
+          "id":3,
+          "title":"Lampara velador SpiderMan",
+          "categories":"macetas",
+          "description":"Figura personalizada de plástico biodegradable, con detalles pintados a mano.",
+          "price":3500,
+          "pictureUrl":"https://i0.wp.com/minimal3d.com.ar/wp-content/uploads/2022/05/IMG_20220505_133648376-scaled.jpg?resize=300%2C300&ssl=1"
+       },
+       {
+          "id":4,
+          "title":"Maseta feliz",
+          "categories":"impresiones",
+          "price":850,
+          "description":"Figura personalizada de plástico biodegradable, con detalles pintados a mano.",
+          "pictureUrl":"https://i0.wp.com/minimal3d.com.ar/wp-content/uploads/2021/09/IMG_20210914_135047_9772-scaled.jpg?resize=300%2C300&ssl=1"
+       },
+       {
+          "id":5,
+          "title":"Velador Torre Eiffel",
+          "categories":"impresiones",
+          "description":"Figura personalizada de plástico biodegradable, con detalles pintados a mano.",
+          "price":3600,
+          "pictureUrl":"https://i0.wp.com/minimal3d.com.ar/wp-content/uploads/2021/11/IMG_20211101_110204_037-scaled.jpg?fit=1920%2C2560&ssl=1"
+       },
+       {
+          "id":6,
+          "title":"Dispensero Stitch",
+          "categories":"impresiones",
+          "description":"Figura personalizada de plástico biodegradable, con detalles pintados a mano.",
+          "price":1700,
+          "pictureUrl":"https://i0.wp.com/minimal3d.com.ar/wp-content/uploads/2021/12/IMG_20211207_182803_778-scaled.jpg?fit=1920%2C2560&ssl=1"
+       }
+    ]
+ }

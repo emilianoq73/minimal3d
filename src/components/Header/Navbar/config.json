@@ -1,0 +1,27 @@
+{
+    "routes":[
+        {
+            "label": "Nosotros",
+            "to": "/nosotros"
+        },
+        {
+            "label": "Contacto",
+            "to": "/contacto"
+        }
+    ],
+
+    "subroutes":[
+        {
+            "label": "Productos",
+            "to": "/productos"
+        },
+        {
+            "label": "Impresiones",
+            "to": "/productos/impresiones"
+        },
+        {
+            "label": "Macetas",
+            "to": "/productos/macetas"
+        }
+    ]
+}

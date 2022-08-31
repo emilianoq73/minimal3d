@@ -1,7 +1,12 @@
 import React from 'react'
-import Item from './Item/Item'
+import Item from './Item/Item.jsx';
+import { useParams } from "react-router-dom";
 
 const ItemList = ({items}) => {
+
+  const params = useParams()
+  const par = params.categories
+  console.log(par)
 
   return (
 
@@ -10,7 +15,7 @@ const ItemList = ({items}) => {
       {items.length < 1 ? 
       (<h1>Cargando..</h1>
       ) : ( 
-        items.map( items  => 
+        items.filter((elem) => elem.categories === par).map( items  => 
         <Item key={items.id} item={items} />))
       }  
                     

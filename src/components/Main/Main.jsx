@@ -1,10 +1,13 @@
 import React from 'react'
-import ItemListContainer from './ItemListContainer/ItemListContainer'
 
-const Main = () => {
+const Main = ({greating}) => {
   return (
-    <main className='app-main'>
-        <ItemListContainer greating={"Bienvenidos a Minimal 3D"} />
+    <main className='d-flex flex-column align-items-center'>
+        <p className='text-black fs-1 mt-4'>{greating}</p>
+            <div className="spinner-border m-5" role="status" style={{width: '3rem', height: '3rem'}} >
+                <span className="visually-hidden">Loading...</span>
+            </div>
+        
     </main>
   )
 }
