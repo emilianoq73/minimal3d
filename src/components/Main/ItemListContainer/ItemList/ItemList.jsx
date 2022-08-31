@@ -4,9 +4,8 @@ import { useParams } from "react-router-dom";
 
 const ItemList = ({items}) => {
 
-  const params = useParams()
-  const par = params.categories
-  console.log(par)
+  const params = useParams();
+  const par = params.categories;
 
   return (
 
@@ -14,11 +13,12 @@ const ItemList = ({items}) => {
                 
       {items.length < 1 ? 
       (<h1>Cargando..</h1>
-      ) : ( 
-        items.filter((elem) => elem.categories === par).map( items  => 
-        <Item key={items.id} item={items} />))
-      }  
-                    
+      ) : (par === undefined ? ( 
+        items.map( items  => 
+        <Item key={items.id} item={items} />)) : ( 
+          items.filter((elem) => elem.categories === par).map( items  => 
+          <Item key={items.id} item={items} />)) 
+       )}                
     </div>   
   )
 }
