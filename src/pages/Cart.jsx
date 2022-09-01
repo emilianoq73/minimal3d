@@ -2,7 +2,7 @@ import React from 'react'
 
 const Cart = () => {
   return (
-    <div>Este es el Carrito</div>
+    <div className='h2 text-center mt-5'>Este es el Carrito</div>
   )
 }
 

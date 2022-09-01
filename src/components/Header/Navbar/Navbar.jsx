@@ -1,6 +1,6 @@
 import React from 'react'
 import CartWidget from './CartWidget/CartWidget';
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import config from "./config.json";
 
 const Navbar = () => {
@@ -19,7 +19,7 @@ const Navbar = () => {
                             <NavLink to={'/productos'} className="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</NavLink>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 {config.subroutes.map((ruta,index) => (
-                                <NavLink className='text-dark mx-2' key={index} to={ruta.to}>{ruta.label}</NavLink>
+                                <Link className='text-dark mx-2' key={index} to={ruta.to}>{ruta.label}</Link>
                                 ))}
                             </ul>
                         </li>   

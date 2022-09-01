@@ -1,11 +1,10 @@
 import React, {useState} from 'react'
-
+import { Link } from "react-router-dom";
 
 const ItemCount = ({ stock, initial, OnAdd }) => {
-
+  
     const [counter, setCounter] = useState(initial);
 
-  
   function sumar() {
      counter < stock && setCounter(counter+1)
   }
@@ -23,7 +22,7 @@ const ItemCount = ({ stock, initial, OnAdd }) => {
             <button onClick={sumar} type="button" className="btn btn-primary"> + </button>
         </div>
         <div className='d-flex justify-content-center'>
-        <button onClick={() => {OnAdd(counter)}} type="button" className="btn btn-primary btn-lg">Agregar al carrito</button>
+        <Link to={'/cart'} onClick={() => {OnAdd(counter)}} type="button" className="btn btn-primary btn-lg">Agregar al carrito</Link>
         </div>
     </div>
   )
