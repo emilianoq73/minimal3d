@@ -9,7 +9,7 @@ const ItemDetailContainer = ({numId}) => {
   
   return (
     <div className='container d-flex justify-content-center'>
-      <ItemDetail itemElegido={elegido} />
+      <ItemDetail productoElegido={elegido} />
     </div>
   )
 }

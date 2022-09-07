@@ -1,5 +1,6 @@
 
 import './App.css';
+import CartProvider from './context/CartProvider';
 import Rutas from "./routes/Rutas.jsx";
 
 
@@ -7,7 +8,9 @@ import Rutas from "./routes/Rutas.jsx";
 function App() {
   return (
     <div className="app">
-      <Rutas />
+      <CartProvider>
+        <Rutas />
+      </CartProvider>
     </div>
   );
 }
