@@ -15,12 +15,23 @@ const CartProvider = ({children}) => {
 
     const [carrito,setCarrito] = useState([]);
 
-    const addItem = (productoElegido) => {
+    const addItem = (productoElegido, quantity) => {
         
-        setCarrito([ ...carrito,productoElegido])
+        setCarrito([ ...carrito,{...productoElegido, quantity}])
     };
 
     const clear = () => setCarrito([]);
+
+    /* const removeITem = (item.id) => {
+      const deleted = carrito.filter((carrito) => carrito.id !== item.id);
+      setProducts(deleted);
+      setTotal(carrito.length - 1);
+     
+      
+       alert("Se quitó un producto")
+    }; */
+    
+    
 
 
   return (
@@ -31,7 +42,8 @@ const CartProvider = ({children}) => {
         sumar,
         restar,
         addItem,
-        clear
+        clear,
+        
     }}>
         {children}
     </CartContext.Provider>
