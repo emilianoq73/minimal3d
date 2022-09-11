@@ -5,31 +5,47 @@ export const CartContext = createContext();
 
 const CartProvider = ({children}) => {
 
-    let initial = 1;
+    let initial = 0;
 
     const [quantity, setQuantity] = useState(initial);
+    const [carrito,setCarrito] = useState([]);
 
     const sumar = (stock) => quantity < stock && setQuantity(quantity+1);
 
     const restar = () => quantity > initial && setQuantity(quantity-1);
 
-    const [carrito,setCarrito] = useState([]);
+    const onAdd = (productoElegido, quantity) => {
 
-    const addItem = (productoElegido, quantity) => {
+      addItem(productoElegido, quantity)
+    }
+
+    const addItem = (productoElegido, quantity, id) => {
+
+      if (isInCart(productoElegido.id)) {
+        let aux = productoElegido;
         
-        setCarrito([ ...carrito,{...productoElegido, quantity}])
+      } else{
+         setCarrito([ ...carrito, {...productoElegido, quantity, id}]);
+      }
+       
+        
     };
 
-    const clear = () => setCarrito([]);
+    function clear() {
+    return setCarrito([]);
+  }
 
-    /* const removeITem = (item.id) => {
-      const deleted = carrito.filter((carrito) => carrito.id !== item.id);
-      setProducts(deleted);
-      setTotal(carrito.length - 1);
-     
-      
-       alert("Se quitó un producto")
-    }; */
+  function isInCart(itemId) {
+    return carrito.some((element)=> element.id === itemId)
+  }
+
+  const removeITem = (id) => {
+    const deleted = carrito.filter((e) => e.id !== id);
+    setCarrito(deleted);
+    setQuantity(carrito.length -1)
+    alert('se quito un producto')
+  }; 
+    
     
     
 
@@ -41,8 +57,9 @@ const CartProvider = ({children}) => {
         carrito,
         sumar,
         restar,
-        addItem,
+        onAdd,
         clear,
+        removeITem
         
     }}>
         {children}

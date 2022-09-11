@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import { CartContext } from '../../../../context/CartProvider';
-
+import { Link } from "react-router-dom";
 
 const ItemCount = ({producto}) => {
 
@@ -9,7 +9,8 @@ const ItemCount = ({producto}) => {
   const {
     quantity,
     sumar,
-    restar} = useContext(CartContext);
+    restar,
+    onAdd} = useContext(CartContext);
 
   return (
     <div className='container'>
@@ -20,7 +21,7 @@ const ItemCount = ({producto}) => {
             <button onClick={() => {sumar(stock)}} type="button" className="btn btn-primary"> + </button>
         </div>
         <div className='d-flex justify-content-center'>
-        
+        <Link to={'/cart'} onClick={() => {onAdd(producto, quantity)}} type="button" className="btn btn-primary btn-lg">Agregar al carrito</Link>
         </div>
     </div>
   )
