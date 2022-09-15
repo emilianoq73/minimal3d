@@ -1,26 +1,33 @@
 import React, {useEffect, useState} from 'react'
 import ItemList from './ItemList/ItemList';
-import dataProductos from "/EMILIANO/CURSO PROGRAMACION/react/minimal3d/src/components/dataProductos.json";
+import { collection, getDocs } from 'firebase/firestore';
+import db from '../../../services';
+
 
 
 const ItemListContainer = () => {
 
     const [productos, setProductos] = useState([])
-    
-    useEffect(() => {
-        const task = new Promise((resolve,rejected) => {
-          setTimeout(() => {
-            resolve(dataProductos.products);
-          },2000);
-        });
-        
-        task
-          .then((resultado) => setProductos(resultado))
-          .catch((err) => console.log(err))
-          .finally(() => console.log("se finalizo la promesa"));
 
-        return() => {};
-     },[]);
+    useEffect(() => {
+
+      const getColData = async () => {
+        try {
+          const data = collection(db, 'products');
+          const col = await getDocs(data);
+          const resp = col.docs.map( (doc) => doc={ id:doc.id, ...doc.data()} )
+          setProductos(resp)
+          console.log(resp)
+        } catch (error) {
+          console.log(error)
+        }
+        
+      }
+      getColData()
+      return () => {
+        
+      }
+    }, [])
     
   return (
         <div className='d-flex flex-column align-items-center'>

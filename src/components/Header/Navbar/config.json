@@ -22,6 +22,10 @@
         {
             "label": "Macetas",
             "to": "/productos/macetas"
+        },
+        {
+            "label": "Veladores",
+            "to": "/productos/veladores"
         }
     ]
 }
