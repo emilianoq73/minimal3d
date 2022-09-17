@@ -1,9 +1,33 @@
-import React, { createContext, useState }  from 'react'
+import React, { createContext, useState, useEffect }  from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import db from '../services';
 
 
 export const CartContext = createContext();
 
 const CartProvider = ({children}) => {
+
+  const [productos, setProductos] = useState([])
+
+  useEffect(() => {
+
+    const getColData = async () => {
+      try {
+        const data = collection(db, 'products');
+        const col = await getDocs(data);
+        const resp = col.docs.map( (doc) => doc={ id:doc.id, ...doc.data()} )
+        setProductos(resp)
+        console.log(resp)
+      } catch (error) {
+        console.log(error)
+      }
+      
+    }
+    getColData()
+    return () => {
+      
+    }
+  }, [])
 
     let initial = 0;
 
@@ -23,7 +47,7 @@ const CartProvider = ({children}) => {
 
       if (isInCart(productoElegido.id)) {
         let aux = productoElegido;
-        
+        console.log(aux)
       } else{
          setCarrito([ ...carrito, {...productoElegido, quantity, id}]);
       }
@@ -52,6 +76,7 @@ const CartProvider = ({children}) => {
 
   return (
     <CartContext.Provider value={{
+        productos,
         initial,
         quantity,
         carrito,

@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext} from 'react'
 import ItemList from './ItemList/ItemList';
-import { collection, getDocs } from 'firebase/firestore';
-import db from '../../../services';
+import { CartContext } from '../../../context/CartProvider';
 
 
 
 const ItemListContainer = () => {
+  const {productos} = useContext(CartContext)
 
-    const [productos, setProductos] = useState([])
+    /* const [productos, setProductos] = useState([])
 
     useEffect(() => {
 
@@ -27,7 +27,7 @@ const ItemListContainer = () => {
       return () => {
         
       }
-    }, [])
+    }, []) */
     
   return (
         <div className='d-flex flex-column align-items-center'>

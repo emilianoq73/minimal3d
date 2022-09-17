@@ -63,8 +63,23 @@ const Cart = () => {
                 <div class="col-lg-4 bg-grey">
                   <div class="p-5">
                     <h3 class="fw-bold mb-5 mt-2 pt-1">Resumen</h3>
+                    <div class="row mb-2">
+                      <div class="col">
+                      <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" />
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="Apellido" aria-label="Apellido" />
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col">
+                      <input type="email" class="form-control" placeholder="Email" aria-label="Email" />
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="Teléfono" aria-label="Telefono" />
+                      </div>
+                    </div>
                     
-
                     <div class="d-flex justify-content-between mb-4">
                       <h5 class="text-uppercase">items 3</h5>
                       <h5>€ 132.00</h5>

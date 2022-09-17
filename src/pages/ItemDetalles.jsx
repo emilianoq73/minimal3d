@@ -7,7 +7,7 @@ import ItemDetailContainer from '../components/ItemDetailContainer/ItemDetailCon
 const ItemDetalles = () => {
 
   const params = useParams();
-  const numId = parseInt(params.id);
+  const numId = params.id;
   return (
     <div>
       <ItemDetailContainer numId={numId} />
