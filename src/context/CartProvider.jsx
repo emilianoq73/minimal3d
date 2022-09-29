@@ -29,29 +29,20 @@ const CartProvider = ({children}) => {
     }
   }, [])
 
-    let initial = 0;
-
-    const [quantity, setQuantity] = useState(initial);
+    
     const [carrito,setCarrito] = useState([]);
 
-    const sumar = (stock) => quantity < stock && setQuantity(quantity+1);
-
-    const restar = () => quantity > initial && setQuantity(quantity-1);
-
-    const onAdd = (productoElegido, quantity) => {
-
-      addItem(productoElegido, quantity)
+    const onAdd = (product) => {
+      if (product.stock < 0 || product.cantidad <= 0) return;
+      addItem(product);
     }
 
-    const addItem = (productoElegido, quantity, id) => {
+    const addItem = (product) => {
 
-      if (isInCart(productoElegido.id)) {
-        let aux = productoElegido;
-        console.log(aux)
-      } else{
-         setCarrito([ ...carrito, {...productoElegido, quantity, id}]);
+      if (isInCart(carrito, product)) {
+        setCarrito(unificarItems(carrito, product));
       }
-       
+       setCarrito([ ...carrito, product]);
         
     };
 
@@ -59,16 +50,39 @@ const CartProvider = ({children}) => {
     return setCarrito([]);
   }
 
-  function isInCart(itemId) {
-    return carrito.some((element)=> element.id === itemId)
+  const sacarDelCarrito = (id) => {
+    let nuevoCarrito = carrito.filter((e) => e.id !== id);
+    setCarrito(nuevoCarrito);
+  };
+
+  const isInCart = (carrito, product) => {
+    return carrito.some((element)=> element.id === product.id)
   }
 
-  const removeITem = (id) => {
+  const unificarItems = (carrito, product) => {
+    // let array = carrito;
+    // for (let i = 0; i < array.length; i++) {
+    //   if (array[i].id === item.id) {
+    //     array[i].cantidad = item.cantidad;
+    //     array[i].stock = item.stock;
+    //   }
+    // }
+    //return array;
+  
+    return carrito.map((a) => {
+      if(a.id === product.id){
+        a.cantidad = product.cantidad;
+        a.stock = product.stock;
+      }
+      return a;
+    } )
+  };
+  /* const removeITem = (id) => {
     const deleted = carrito.filter((e) => e.id !== id);
     setCarrito(deleted);
     setQuantity(carrito.length -1)
     alert('se quito un producto')
-  }; 
+  };  */
     
     
     
@@ -77,14 +91,11 @@ const CartProvider = ({children}) => {
   return (
     <CartContext.Provider value={{
         productos,
-        initial,
-        quantity,
         carrito,
-        sumar,
-        restar,
         onAdd,
         clear,
-        removeITem
+        sacarDelCarrito
+        
         
     }}>
         {children}

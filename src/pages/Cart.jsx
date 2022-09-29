@@ -2,13 +2,13 @@ import React from 'react'
 import { useContext } from 'react'
 import { CartContext } from '../context/CartProvider';
 import { Link } from "react-router-dom";
+import Formulario from '../components/Formulario/Formulario';
+import CartElement from '../components/CartElement/CartElement';
 
 const Cart = () => {
 
-  const {quantity, carrito, clear, removeITem} = useContext(CartContext);
-
-
-
+  const {carrito, clear, sacarDelCarrito} = useContext(CartContext);
+  
   return (
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -26,24 +26,7 @@ const Cart = () => {
                               
                               <div >
                               {carrito.map((item, index) => (
-                                  <div class="row mb-4 d-flex justify-content-between align-items-center" key={index}>
-                                    <div class="col-md-2 col-lg-2 col-xl-2">
-                                      <img className='img-fluid rounded-3' src={item.pictureUrl} alt="" />
-                                    </div>
-                                    <div class="col-md-3 col-lg-3 col-xl-3">
-                                      <h6 class="text-muted">{item.categories}</h6>
-                                      <h6 class="text-black mb-0">{item.title}</h6>
-                                    </div>
-                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                      <p className='cantidades'>Cantidad: {quantity}</p>
-                                    </div>
-                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                      <h6 class="mb-0">${item.price * quantity}</h6>
-                                    </div>
-                                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                      <button onClick={() => removeITem(item.id)}>X</button>
-                                    </div>
-                                 </div>
+                                <CartElement key={index} item={item} quitar={sacarDelCarrito}/>
                               ))}
                                </div>
                               
@@ -63,23 +46,8 @@ const Cart = () => {
                 <div class="col-lg-4 bg-grey">
                   <div class="p-5">
                     <h3 class="fw-bold mb-5 mt-2 pt-1">Resumen</h3>
-                    <div class="row mb-2">
-                      <div class="col">
-                      <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" />
-                      </div>
-                      <div class="col">
-                        <input type="text" class="form-control" placeholder="Apellido" aria-label="Apellido" />
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                      <div class="col">
-                      <input type="email" class="form-control" placeholder="Email" aria-label="Email" />
-                      </div>
-                      <div class="col">
-                        <input type="text" class="form-control" placeholder="Teléfono" aria-label="Telefono" />
-                      </div>
-                    </div>
                     
+                    <Formulario />
                     <div class="d-flex justify-content-between mb-4">
                       <h5 class="text-uppercase">items 3</h5>
                       <h5>€ 132.00</h5>
