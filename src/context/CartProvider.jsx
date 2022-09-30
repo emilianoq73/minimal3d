@@ -1,33 +1,18 @@
 import React, { createContext, useState, useEffect }  from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import db from '../services';
+import useFirebase from '../hooks/useFirebase';
+
 
 
 export const CartContext = createContext();
 
 const CartProvider = ({children}) => {
 
-  const [productos, setProductos] = useState([])
+  const { productos, getColData } = useFirebase();
 
   useEffect(() => {
-
-    const getColData = async () => {
-      try {
-        const data = collection(db, 'products');
-        const col = await getDocs(data);
-        const resp = col.docs.map( (doc) => doc={ id:doc.id, ...doc.data()} )
-        setProductos(resp)
-        console.log(resp)
-      } catch (error) {
-        console.log(error)
-      }
-      
-    }
-    getColData()
-    return () => {
-      
-    }
-  }, [])
+    getColData();
+    // eslint-disable-next-line
+  },[]);
 
     
     const [carrito,setCarrito] = useState([]);
@@ -37,16 +22,33 @@ const CartProvider = ({children}) => {
       addItem(product);
     }
 
-    const addItem = (product) => {
+    const addItem = (item) => {
 
-      if (isInCart(carrito, product)) {
-        setCarrito(unificarItems(carrito, product));
+      isInCart(carrito, item) ?
+      setCarrito(unificarItems(carrito, item)) :
+      setCarrito([ ...carrito, item]);
+      /* if (isInCart(carrito, item)) {
+        setCarrito(unificarItems(carrito, item));
       }
-       setCarrito([ ...carrito, product]);
+       setCarrito([ ...carrito, item]); */
         
     };
 
-    function clear() {
+const isInCart = (carrito, item) => {
+    return carrito.some((element)=> element.id === item.id)
+  }
+
+  const unificarItems = (carrito, item) => {
+    return carrito.map((a) => {
+      let b = a.quantity;
+      if(a.id === item.id){
+        a.quantity = b + item.quantity;
+      }
+      return a;
+    } )
+  };    
+
+  const clear=()=> {
     return setCarrito([]);
   }
 
@@ -55,38 +57,26 @@ const CartProvider = ({children}) => {
     setCarrito(nuevoCarrito);
   };
 
-  const isInCart = (carrito, product) => {
-    return carrito.some((element)=> element.id === product.id)
-  }
-
-  const unificarItems = (carrito, product) => {
-    // let array = carrito;
-    // for (let i = 0; i < array.length; i++) {
-    //   if (array[i].id === item.id) {
-    //     array[i].cantidad = item.cantidad;
-    //     array[i].stock = item.stock;
-    //   }
-    // }
-    //return array;
   
-    return carrito.map((a) => {
-      if(a.id === product.id){
-        a.cantidad = product.cantidad;
-        a.stock = product.stock;
-      }
-      return a;
-    } )
-  };
-  /* const removeITem = (id) => {
-    const deleted = carrito.filter((e) => e.id !== id);
-    setCarrito(deleted);
-    setQuantity(carrito.length -1)
-    alert('se quito un producto')
-  };  */
-    
-    
-    
 
+  const totalCarrito = (carrito) => {
+    let suma = 0;
+    for (let i = 0; i < carrito.length; i++) {
+      suma = suma + carrito[i].quantity * carrito[i].price;
+    }
+    return suma;
+  };
+  
+  const totalArticulos = (carrito) => {
+    let suma = 0;
+    for (let i = 0; i < carrito.length; i++) {
+      suma = suma + carrito[i].quantity;
+    }
+    return suma;
+  };
+  const validarTodoLLeno = (campos) => {
+    return campos.some((campo) => campo === "")
+  }
 
   return (
     <CartContext.Provider value={{
@@ -94,9 +84,10 @@ const CartProvider = ({children}) => {
         carrito,
         onAdd,
         clear,
-        sacarDelCarrito
-        
-        
+        sacarDelCarrito,
+        totalCarrito,
+        totalArticulos,
+        validarTodoLLeno
     }}>
         {children}
     </CartContext.Provider>
