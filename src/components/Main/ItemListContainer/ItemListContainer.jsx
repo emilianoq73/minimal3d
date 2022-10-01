@@ -9,7 +9,10 @@ const ItemListContainer = () => {
 
   return (
         <div className='d-flex flex-column align-items-center'>
-            <ItemList items={productos} />  
+          <div>
+            <h2 className='text-dark'>Productos</h2>
+          </div>
+          <ItemList items={productos} />  
         </div>
  ) 
 }

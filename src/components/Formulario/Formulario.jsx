@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react';
 import useFirebase from "../../hooks/useFirebase";
 import { CartContext } from '../../context/CartProvider';
+import Swal from 'sweetalert2';
 
 const Input = ({
   className,
@@ -21,7 +22,7 @@ const Input = ({
         value={value}
         onChange={onChange}
         onBlur={(e) => onBlur(e)}
-        className={inputClassName} //{`form-control ${error.nombre && "is-invalid"}`}
+        className={inputClassName}
         placeholder={placeholder}
       />
       {error.nombre && (
@@ -35,7 +36,7 @@ const Input = ({
 const Formulario = ({total, compra, totalArt}) => {
 
   const { generateTicket } = useFirebase();
-  const { validarTodoLLeno, clear } = useContext(CartContext);
+  const { validarCompleto, clear } = useContext(CartContext);
 
   const [formulario, setFormulario] = useState({
     buyer: {
@@ -46,6 +47,7 @@ const Formulario = ({total, compra, totalArt}) => {
     },
     total: total,
     items: compra,
+    date: Date.now()
   });
   
   const [error, setError] = useState({});
@@ -55,17 +57,18 @@ const Formulario = ({total, compra, totalArt}) => {
   } = formulario;
 
   const onBotton = ()=>{
-    !validarTodoLLeno([email, nombre, apellido, telefono]) &&
+    !validarCompleto([email, nombre, apellido, telefono]) &&
       setDisable(false)
   }
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (validarTodoLLeno([email, nombre, apellido, telefono])) {
-      console.log("no funca");
-      return;
-    }
-    console.log("funca");
+    !validarCompleto([email, nombre, apellido, telefono]) &&
+    Swal.fire({
+      title: "Genial!",
+      text: "Su orden de compra se genero correctamente!",
+      icon: "success",
+    });
     generateTicket({ datos: formulario });
     clear();
   };

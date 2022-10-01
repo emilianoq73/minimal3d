@@ -1,11 +1,15 @@
-import React from 'react'
-import Carousel from './Carousel/Carousel'
+import React, {useContext} from 'react'
+import { CartContext } from '../../context/CartProvider';
+import Cards from './Cards/Cards'
 
-const Main = ({greating}) => {
+
+const Main = () => {
+  const { productos } = useContext(CartContext);
   return (
     <main className='d-flex flex-column align-items-center'>
-        <p className='text-black fs-1 mt-4'>{greating}</p>
-        <Carousel />
+        <img className='img-fluid' src="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/MYVGQ5I3TRBVLH2XCMGF5QA5AQ.jpg" alt="" />
+
+        <Cards items={productos}/>
     </main>
   )
 }

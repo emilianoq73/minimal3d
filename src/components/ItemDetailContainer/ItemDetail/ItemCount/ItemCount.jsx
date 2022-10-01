@@ -1,6 +1,5 @@
 import React, {useContext, useState} from 'react'
 import { CartContext } from '../../../../context/CartProvider';
-import { Link } from "react-router-dom";
 
 const ItemCount = ({producto}) => {
 
@@ -18,14 +17,14 @@ const ItemCount = ({producto}) => {
 
   return (
     <div className='container'>
-        <p className='text-center'>PRODUCTO 1</p>
+        
         <div className="d-flex justify-content-center mb-3" role="group" aria-label="Basic example">
             <button onClick={restar} type="button" className="btn btn-primary"> - </button>
             <span className='mx-5'>{quantity}</span>
             <button onClick={sumar} type="button" className="btn btn-primary"> + </button>
         </div>
         <div className='d-flex justify-content-center'>
-        <Link to={'/cart'} onClick={() => onAdd(product)} type="button" className="btn btn-primary btn-lg">Agregar al carrito</Link>
+          <button onClick={() => onAdd(product)} type="button" className="btn btn-primary btn-lg">Agregar al carrito</button>
         </div>
     </div>
   )

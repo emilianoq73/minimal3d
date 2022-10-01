@@ -28,12 +28,14 @@ const useFirebase = () => {
     } catch (error) {
         console.log(error)
     }
+    
   };
+
 
   return {
     productos,
     getColData,
-    generateTicket
+    generateTicket,
   };
 };
 

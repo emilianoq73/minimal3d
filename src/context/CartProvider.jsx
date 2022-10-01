@@ -23,15 +23,9 @@ const CartProvider = ({children}) => {
     }
 
     const addItem = (item) => {
-
       isInCart(carrito, item) ?
       setCarrito(unificarItems(carrito, item)) :
       setCarrito([ ...carrito, item]);
-      /* if (isInCart(carrito, item)) {
-        setCarrito(unificarItems(carrito, item));
-      }
-       setCarrito([ ...carrito, item]); */
-        
     };
 
 const isInCart = (carrito, item) => {
@@ -74,7 +68,7 @@ const isInCart = (carrito, item) => {
     }
     return suma;
   };
-  const validarTodoLLeno = (campos) => {
+  const validarCompleto = (campos) => {
     return campos.some((campo) => campo === "")
   }
 
@@ -87,7 +81,7 @@ const isInCart = (carrito, item) => {
         sacarDelCarrito,
         totalCarrito,
         totalArticulos,
-        validarTodoLLeno
+        validarCompleto
     }}>
         {children}
     </CartContext.Provider>
