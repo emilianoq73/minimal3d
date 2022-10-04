@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import "../Item/Item.css"
 
 const Item = ( {item} ) => {
+
   return (
     <div className='col'>
-      <div className="card" style={{width:'18rem'}}>
+      <div className="card">
         <img src= {item.pictureUrl} className='card-img-top' style={{height:'15rem'}} alt="" />
         <div className="card-body">
             <h5 className="card-title">{item.title}</h5>

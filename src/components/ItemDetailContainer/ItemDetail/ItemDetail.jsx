@@ -18,7 +18,7 @@ const ItemDetail = ({productoElegido}) => {
         </div>
         
         <ItemCount producto={productoElegido} />
-        <Link to={"/"} >Volver</Link>
+        <Link to={"/"} className="m-3" >Volver</Link>
         
     </div>
   )
